@@ -2,6 +2,10 @@ package model;
 
 import java.util.Arrays;
 
+/**
+ * Класс описывает объект "слой" - уровень аквариума,
+ * заполенный состояними из перечисления Tile.
+ */
 public class Layer {
 
     private Tile[] layer;

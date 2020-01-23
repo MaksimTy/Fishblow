@@ -3,6 +3,12 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Класс описывает объект "аквариум".
+ * АКвариум представляет собой упорядоченный список
+ * слоёв из состояний клеток, заданных матрицей
+ * из класса Terrain.
+ */
 public class Aquarium {
 
     /**
