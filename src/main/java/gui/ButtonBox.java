@@ -1,10 +1,10 @@
 package gui;
 
+
 import helper.StringHelper;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
-
 import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
@@ -62,7 +62,7 @@ public class ButtonBox extends VBox {
                     e.printStackTrace();
                     text.setOutputText(e.getMessage());
                 }
-                text.setOutputText(lines.stream().collect(Collectors.joining()));
+                text.setOutputText(lines.stream().collect(Collectors.joining(" ")));
             }
         });
 
@@ -77,7 +77,7 @@ public class ButtonBox extends VBox {
                     array = Arrays.toString(stringHelper.getArray());
                     text.setOutputText(array);
 
-                 } catch (InvalidValuesException | NullPointerException | OutOfMemoryError | NumberFormatException e) {
+                } catch (InvalidValuesException | NullPointerException | OutOfMemoryError | NumberFormatException e) {
                     e.printStackTrace();
                     array = Arrays.toString(stringHelper.getArray());
                     text.setOutputText((array + "\n" + e.getMessage()));
