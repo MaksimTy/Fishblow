@@ -52,5 +52,4 @@ public class Aquarium {
         return this.layers.stream().map(x -> x.getWater()).reduce((a, b) -> a + b).get();
     }
 
-
 }

@@ -46,7 +46,8 @@ public class Terrain {
         this.width = this.terrain.length;
 
         if (isTerrainValid()) {
-            this.turnToLeftMatrix(getTerrainMatrix(this.terrain));
+           // this.turnToLeftMatrix(getTerrainMatrix(this.terrain));
+            this.aquariumMatrix = this.getMatrix();
         } else {
             try {
                 throw new InvalidValuesException("Invalid input data!");
@@ -71,48 +72,10 @@ public class Terrain {
                 && Arrays.stream(this.terrain).min().getAsInt() >= 0;
     }
 
-    /**
-     * Метод формирует матрицу расположения кубиков в аквариуме.
-     * (получается аквариум, лежащий на правом боку)
-     *
-     * @param terrain последовательная высота столбцов в  аквариуме.
-     * @return
-     */
-    private int[][] getTerrainMatrix(int[] terrain) {
-        int[][] terrainMatrix = new int[terrain.length][this.height];
-
-        for (int i = 0; i < this.terrain.length; i++) {
-            Arrays.fill(terrainMatrix[i], Tile.Empty.ordinal());
-            int count = this.terrain[i] < 0 ? 0 : this.terrain[i];
-            Arrays.fill(terrainMatrix[i], 0, count, Tile.Brick.ordinal());
-        }
-        return terrainMatrix;
-    }
-
-    /**
-     * Метод разворачивает исходную матрицу  на 90 градусов
-     * против часовой стрелки и иницализирует поле "aquariumMatrix".
-     * (аквариум переворачивается с правого бока на дно).
-     *
-     * @param matrix
-     */
-    private void turnToLeftMatrix(int[][] matrix) {
-
-        this.aquariumMatrix = new int[this.height][matrix.length];
-        for (int i = this.height - 1, h = 0; i >= 0; i--, h++) {
-            int[] row = new int[matrix.length];
-            for (int j = matrix.length - 1; j >= 0; j--) {
-                row[j] = matrix[j][i];
-            }
-            this.aquariumMatrix[h] = row;
-        }
-    }
-
 
     public int getHeight() {
         return height;
     }
-
 
     public int[][] getAquariumMatrix() {
         return aquariumMatrix;
@@ -131,4 +94,42 @@ public class Terrain {
         }
         return stringBuilder.toString();
     }
+
+
+    /**
+     * Метод из исходного массива формирует матрицу аквариума.
+     * @return
+     */
+    private int[][] getMatrix() {
+        int[] unit = new int[this.width];
+        Arrays.fill(unit, 1);
+        int[][] matrix = new int[this.height][this.width];
+        int counter = matrix.length;
+        for (int i = counter - 1; i >= 0; i--) {
+            unit = divArray(unit);
+            for (int j = 0; j < matrix[i].length; j++) {
+                matrix[i][j] = unit[j];
+            }
+        }
+        return matrix;
+    }
+
+    /**
+     * Метод вычитает из заданного массива натруральных числе
+     * единичный массив той же длины.
+     * @param line
+     * @return
+     */
+    private int[] divArray(int[] line) {
+        for (int i = 0; i < this.terrain.length; i++) {
+            if (this.terrain[i] == 0) {
+                line[i] = 0;
+            }
+            if (this.terrain[i] > 0) {
+                this.terrain[i] = this.terrain[i] - line[i];
+            }
+        }
+        return line;
+    }
+
 }
