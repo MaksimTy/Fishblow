@@ -1,5 +1,7 @@
 package model;
 
+import javafx.scene.image.Image;
+
 /**
  * Класс представляет набор состояний клетки (единицы объёма) аквариума.
  */

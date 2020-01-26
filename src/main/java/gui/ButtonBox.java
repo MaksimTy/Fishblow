@@ -5,7 +5,9 @@ import helper.StringHelper;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -32,6 +34,7 @@ public class ButtonBox extends VBox {
 
     private Aquarium aquarium;
     private TextBox text;
+    private TilesBox tilesBox;
 
 
     public ButtonBox(Stage stage, TextBox text) {
@@ -48,7 +51,6 @@ public class ButtonBox extends VBox {
 
         this.getChildren().add(buttonCalc);
         this.setMargin(buttonCalc, insets);
-
 
         buttonInput.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -89,7 +91,25 @@ public class ButtonBox extends VBox {
             @Override
             public void handle(ActionEvent event) {
                 text.setOutputLabel(String.valueOf(aquarium.getWater()));
+                try {
+                    tilesBox.setAquarium(aquarium);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
             }
         });
+    }
+
+    public Aquarium getAquarium() {
+        return aquarium;
+    }
+
+    public TilesBox getTilesBox() {
+        return tilesBox;
+    }
+
+    public void setTilesBox(Aquarium aquarium) throws IOException {
+        this.tilesBox = new TilesBox(aquarium);
     }
 }

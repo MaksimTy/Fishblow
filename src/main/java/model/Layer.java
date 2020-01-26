@@ -55,4 +55,12 @@ public class Layer {
                 Arrays.toString(layer) +
                 '}';
     }
+
+    public Tile[] getLayer() {
+        return layer;
+    }
+
+    public int getSize() {
+        return this.layer.length;
+    }
 }

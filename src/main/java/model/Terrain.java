@@ -74,7 +74,11 @@ public class Terrain {
 
 
     public int getHeight() {
-        return height;
+        return this.height;
+    }
+
+    public int getWidth(){
+        return this.width;
     }
 
     public int[][] getAquariumMatrix() {
