@@ -56,6 +56,7 @@ public class ButtonBox extends VBox {
             @Override
             public void handle(ActionEvent event) {
                 text.clearOutput();
+                text.setOutputText(text.getIntro());
                 aquarium = null;
                 File file = fileChooser.showOpenDialog(stage);
                 List<String> lines = null;
