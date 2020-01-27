@@ -56,6 +56,10 @@ public class Aquarium {
         return this.terrain.getWidth();
     }
 
+    public int getHeight(){
+        return this.terrain.getHeight();
+    }
+
 
     public List<Layer> getLayers() {
         return layers;

@@ -5,9 +5,7 @@ import helper.StringHelper;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
-import javafx.scene.Parent;
 import javafx.scene.control.Button;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -24,38 +22,41 @@ import java.util.stream.Collectors;
 public class ButtonBox extends VBox {
 
     private final double indent = 5;
+    private final double PrefWidth = 80;
 
     private Insets insets = new Insets(this.indent, this.indent, this.indent, this.indent);
 
     private FileChooser fileChooser = new FileChooser();
     private Button buttonInput = new Button("open file"); //
-    private Button buttonCheck = new Button("check file"); //
+    private Button buttonCheck = new Button("check data"); //
     private Button buttonCalc = new Button("calculate"); //
+    private Button buttonShow = new Button("show"); //
+
+    private Button[] buttons = new Button[]{buttonInput, buttonCheck, buttonCalc, buttonShow};
 
     private Aquarium aquarium;
     private TextBox text;
-    private TilesBox tilesBox;
+    private CanvasBox canvasBox;
 
 
     public ButtonBox(Stage stage, TextBox text) {
 
         this.text = text;
         this.text.setOutputText(this.text.getIntro());
-        this.setPrefWidth(80);
+        this.setPrefWidth(PrefWidth + indent);
 
-        this.getChildren().add(buttonInput);
-        this.setMargin(buttonInput, insets);
+        for (Button button : buttons) {
+            this.getChildren().add(button);
+            this.setMargin(button, insets);
+            button.setPrefWidth(PrefWidth);
+        }
 
-        this.getChildren().add(buttonCheck);
-        this.setMargin(buttonCheck, insets);
-
-        this.getChildren().add(buttonCalc);
-        this.setMargin(buttonCalc, insets);
 
         buttonInput.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 text.clearOutput();
+                aquarium = null;
                 File file = fileChooser.showOpenDialog(stage);
                 List<String> lines = null;
                 try {
@@ -79,7 +80,10 @@ public class ButtonBox extends VBox {
                     array = Arrays.toString(stringHelper.getArray());
                     text.setOutputText(array);
 
-                } catch (InvalidValuesException | NullPointerException | OutOfMemoryError | NumberFormatException e) {
+                } catch (InvalidValuesException |
+                        NullPointerException |
+                        OutOfMemoryError |
+                        NumberFormatException e) {
                     e.printStackTrace();
                     array = Arrays.toString(stringHelper.getArray());
                     text.setOutputText((array + "\n" + e.getMessage()));
@@ -90,13 +94,18 @@ public class ButtonBox extends VBox {
         buttonCalc.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                text.setOutputLabel(String.valueOf(aquarium.getWater()));
-                try {
-                    tilesBox.setAquarium(aquarium);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
 
+                text.setOutputLabelAfter(
+                        String.valueOf(aquarium.getWater()),
+                        String.valueOf(aquarium.getHeight()),
+                        String.valueOf(aquarium.getWidth()));
+            }
+        });
+
+        buttonShow.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                canvasBox.setAquarium(aquarium);
             }
         });
     }
@@ -105,11 +114,11 @@ public class ButtonBox extends VBox {
         return aquarium;
     }
 
-    public TilesBox getTilesBox() {
-        return tilesBox;
+    public CanvasBox getCanvasBox() {
+        return canvasBox;
     }
 
-    public void setTilesBox(Aquarium aquarium) throws IOException {
-        this.tilesBox = new TilesBox(aquarium);
+    public void setCanvasBox(Aquarium aquarium) throws IOException {
+        this.canvasBox = new CanvasBox(aquarium);
     }
 }

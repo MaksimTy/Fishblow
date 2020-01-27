@@ -8,10 +8,10 @@ public class TextBox extends VBox {
 
 
     private final double indent = 5;
-    private final String answer = "Объем оставшейся воды между кубиками: ";
+    private final String answer = "Объем воды, оставшейся между кубиками: ";
     private final String title = "Последовательная высота столбцов в аквариуме: \n";
-    private final String cols = "Количество столбцов = ";
-    private final String rows = "Высота аквариума = ";
+    private final String cols = "\nКоличество столбцов = ";
+    private final String rows = "\nВысота аквариума = ";
     private final String intro = "1. Выберите файл с данными (\"open file\");\n" +
             "2. Проверьте файл (\"check file\");\n" +
             "3. Получите результат (\"calculate\"); ";
@@ -29,9 +29,6 @@ public class TextBox extends VBox {
         this.getChildren().add(this.label);
     }
 
-    public Label getLabel() {
-        return this.label;
-    }
 
     public void setOutputText(String array) {
         this.text.setText(this.title + array);
@@ -41,8 +38,10 @@ public class TextBox extends VBox {
         return this.text.getText();
     }
 
-    public void setOutputLabel(String answer) {
-        this.label.setText(this.answer + answer);
+    public void setOutputLabelAfter(String answer, String rows, String cols) {
+        String result = String.format("%s %s %s %s %s %s",
+                this.answer, answer, this.rows, rows, this.cols, cols);
+        this.label.setText(result);
     }
 
     public void clearOutput() {

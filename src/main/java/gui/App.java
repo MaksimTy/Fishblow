@@ -13,9 +13,11 @@ import javafx.stage.Stage;
 public class App extends Application {
 
     private final double insets = 5;
+    private final double topInsets = 20;
+
     private TextBox textBox;
     private ButtonBox buttonBox;
-    private TilesBox tiles;   //todo
+    private CanvasBox canvas;
 
 
     public static void main(String[] args) {
@@ -26,33 +28,32 @@ public class App extends Application {
     public void start(Stage stage) throws Exception {
         BorderPane window = new BorderPane();
 
-        window.setMaxSize(200, 200);
-
         AnchorPane root = new AnchorPane(window);
         BorderPane.setAlignment(root, Pos.CENTER);
 
 
         this.textBox = new TextBox();
         this.buttonBox = new ButtonBox(stage, this.textBox);
-        this.buttonBox.setTilesBox(this.buttonBox.getAquarium());
-        this.tiles = this.buttonBox.getTilesBox();
+        this.buttonBox.setCanvasBox(this.buttonBox.getAquarium());
+
+        this.canvas = this.buttonBox.getCanvasBox();
 
 
         root.getChildren().add(this.buttonBox);
         root.getChildren().add(this.textBox);
-        root.getChildren().add(this.tiles);
+        root.getChildren().add(this.canvas);
 
         AnchorPane.setLeftAnchor(this.buttonBox, this.insets);
-        AnchorPane.setTopAnchor(this.buttonBox, 20.0 - this.insets);
+        AnchorPane.setTopAnchor(this.buttonBox, this.topInsets - this.insets);
 
-        AnchorPane.setTopAnchor(this.textBox, 20.0);
-        AnchorPane.setLeftAnchor(this.textBox, 80.0);
+        AnchorPane.setTopAnchor(this.textBox, this.topInsets);
+        AnchorPane.setLeftAnchor(this.textBox, this.buttonBox.getPrefWidth() + insets * 2);
         AnchorPane.setRightAnchor(this.textBox, this.insets);
 
-        AnchorPane.setLeftAnchor(this.tiles, this.insets);
-        AnchorPane.setTopAnchor(this.tiles, 160.0);
-        AnchorPane.setRightAnchor(this.tiles, this.insets);
-        AnchorPane.setBottomAnchor(this.tiles, this.insets);
+        AnchorPane.setLeftAnchor(this.canvas, this.insets);
+        AnchorPane.setTopAnchor(this.canvas, 180.0);
+        AnchorPane.setRightAnchor(this.canvas, this.insets);
+        AnchorPane.setBottomAnchor(this.canvas, this.insets);
 
         root.setBackground(new Background(
                 new BackgroundFill(Color.SNOW,
