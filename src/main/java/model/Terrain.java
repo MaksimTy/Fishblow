@@ -38,7 +38,7 @@ public class Terrain {
      */
     private int[][] aquariumMatrix;
 
-    public Terrain(int[] terrain) {
+    public Terrain(int[] terrain) throws InvalidValuesException {
         this.terrain = terrain;
         int maxItem = Arrays.stream(this.terrain).max().getAsInt();
 
@@ -49,11 +49,8 @@ public class Terrain {
 
             this.aquariumMatrix = this.getMatrix();
         } else {
-            try {
-                throw new InvalidValuesException("Invalid input data!");
-            } catch (InvalidValuesException e) {
-                this.aquariumMatrix = null;
-            }
+            this.aquariumMatrix = null;
+            throw new InvalidValuesException("Invalid input data!");
         }
     }
 
@@ -77,7 +74,7 @@ public class Terrain {
         return this.height;
     }
 
-    public int getWidth(){
+    public int getWidth() {
         return this.width;
     }
 
@@ -102,6 +99,7 @@ public class Terrain {
 
     /**
      * Метод из исходного массива формирует матрицу аквариума.
+     *
      * @return
      */
     private int[][] getMatrix() {
@@ -119,8 +117,9 @@ public class Terrain {
     }
 
     /**
-     * Метод вычитает из заданного массива натруральных числе
+     * Метод вычитает из заданного массива натуральных числе
      * единичный массив той же длины.
+     *
      * @param line
      * @return
      */
