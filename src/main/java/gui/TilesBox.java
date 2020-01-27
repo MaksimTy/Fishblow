@@ -20,26 +20,15 @@ public class TilesBox extends ScrollPane {
     private TilePane tilePane;
     private Image brick = new Image(Files.newInputStream(Paths.get("src/main/resources/" + Tile.Brick.name() + ".png")));
 
+
     public TilesBox(Aquarium aquarium) throws IOException {
-
-        this.aquarium = aquarium;
-        this.tilePane = new TilePane();
-        this.tilePane.setOrientation(Orientation.HORIZONTAL);
-        int width = 30;
-        if (this.aquarium != null) {
-            width = this.aquarium.getWidth();
-        }
-        this.tilePane.setPrefColumns(width);
-
         this.setContent(this.tilePane);
         this.setPrefWidth(Double.MAX_VALUE);
         this.setPrefHeight(Double.MAX_VALUE);
-
-        this.fillAquarium(width);
+        this.setAquarium(aquarium);
     }
 
     private void fillAquarium(int width) throws IOException {
-        this.tilePane.getChildren().removeAll(this.tilePane.getChildren());
         if (this.aquarium == null) {
             for (int i = 0; i < width * width; i++) {
                 this.tilePane.getChildren().add(new ImageView(brick));
@@ -56,9 +45,16 @@ public class TilesBox extends ScrollPane {
     }
 
     public void setAquarium(Aquarium aquarium) throws IOException {
-        this.aquarium = aquarium;
-        int width = this.aquarium.getWidth();
-        tilePane.setPrefColumns(width);
+
+        int width = 30;
+        if (aquarium != null) {
+            this.aquarium = aquarium;
+            width = this.aquarium.getWidth();
+        }
+        this.tilePane = new TilePane();
+        this.tilePane.setOrientation(Orientation.HORIZONTAL);
+        this.tilePane.setPrefColumns(width);
+        this.setContent(this.tilePane);
         this.fillAquarium(width);
     }
 }

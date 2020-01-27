@@ -46,7 +46,7 @@ public class Terrain {
         this.width = this.terrain.length;
 
         if (isTerrainValid()) {
-           // this.turnToLeftMatrix(getTerrainMatrix(this.terrain));
+
             this.aquariumMatrix = this.getMatrix();
         } else {
             try {
