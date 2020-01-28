@@ -1,16 +1,15 @@
 
 package gui;
 
-
-import javafx.application.Application;
+import javafx.scene.paint.Color;
+import javafx.application.*;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
-public class App extends Application {
+public class App extends Application{
 
     private final double insets = 5;
     private final double topInsets = 20;

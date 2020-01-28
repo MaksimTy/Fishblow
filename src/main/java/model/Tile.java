@@ -5,10 +5,9 @@ package model;
  */
 public enum Tile {
 
-    Empty("WHITE"),  // пустое пространство аквариума.
-    Brick("BROWN"),  // кубик
-    Water("BLUE");  // вода
-
+    Empty("WHITE"),     // пустое пространство аквариума.
+    Brick("BROWN"),     // кубик
+    Water("BLUE");      // вода
 
     private String color;
 

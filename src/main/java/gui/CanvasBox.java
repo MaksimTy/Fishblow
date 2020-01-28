@@ -18,7 +18,9 @@ public class CanvasBox extends ScrollPane {
     private Aquarium aquarium;
     private Canvas canvas;
     private GraphicsContext graphicsContext;
-    private Image brick = new Image(Files.newInputStream(Paths.get("src/main/resources/" + Tile.Brick.name() + ".png")));
+    private Image brick = new Image(
+            Files.newInputStream(
+                    Paths.get("src/main/resources/" + Tile.Brick.name() + ".png")));
     private final double tile = 8;
 
     public CanvasBox(Aquarium aquarium) throws IOException {
@@ -35,7 +37,8 @@ public class CanvasBox extends ScrollPane {
             this.canvas.setHeight(width / 4 * brick.getHeight());
             for (int i = 0; i < width / 4; i++) {
                 for (int j = 0; j < width; j++) {
-                    this.graphicsContext.drawImage(brick, j * brick.getHeight(), i * brick.getWidth());
+                    this.graphicsContext.drawImage(
+                            brick, j * brick.getHeight(), i * brick.getWidth());
                 }
             }
         } else {
@@ -45,7 +48,9 @@ public class CanvasBox extends ScrollPane {
             for (int i = 0; i < this.aquarium.getLayers().size(); i++) {
                 for (int j = 0; j < aquarium.getLayers().get(i).getLayer().length; j++) {
 
-                    this.graphicsContext.setFill(Color.valueOf(this.aquarium.getLayers().get(i).getLayer()[j].getColor()));
+                    this.graphicsContext.setFill(
+                            Color.valueOf(
+                                    this.aquarium.getLayers().get(i).getLayer()[j].getColor()));
                     this.graphicsContext.setStroke(Color.GRAY);
                     this.graphicsContext.fillRect(j * tile, i * tile, tile, tile);
                     this.graphicsContext.strokeRect(j * tile, i * tile, tile, tile);

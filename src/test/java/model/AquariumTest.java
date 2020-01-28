@@ -4,60 +4,72 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 /**
  * Класс для тестирования публичных методов class Aquarium.
  */
 public class AquariumTest {
+    //успешные вырианты тестов
+    private final ArrayList<int[]> successSetKeys = new ArrayList<>();
+    private final ArrayList<Integer> successSetValues = new ArrayList<>();
+    //тесты с исключениями InvalidValuesException
+    private final ArrayList<int[]> invalidValuesSetKeys = new ArrayList<>();
+    private final ArrayList<Integer> invalidValuesSetValues = new ArrayList<>();
 
-    private final Map<int[], Integer> successSet = new HashMap<>();
-    private final Map<int[], Integer> invalidValuesSet = new HashMap<>();
 
     @Before
     public void setUp() {
-        successSet.put(new int[]{0, 0, 0, 0, 0}, 0);
-        successSet.put(new int[]{6, 6, 6, 6, 1}, 0);
-        successSet.put(new int[]{0, 0, 10, 0, 0}, 0);
+        //успешные вырианты тестов
+        successSetKeys.add(0, new int[]{0, 0, 0, 0, 0});
+        successSetValues.add(0, 0);
+        successSetKeys.add(1, new int[]{6, 6, 6, 6, 1});
+        successSetValues.add(1, 0);
+        successSetKeys.add(2, new int[]{0, 0, 10, 0, 0});
+        successSetValues.add(2, 0);
+        successSetKeys.add(3, new int[]{0, 0, 0, 10, 1});
+        successSetValues.add(3, 0);
+        successSetKeys.add(4, new int[]{10, 0, 0, 0, 10});
+        successSetValues.add(4, 30);
+        successSetKeys.add(5, new int[]{4, 2, 3, 2, 5, 0, 1, 3});
+        successSetValues.add(5, 10);
+        successSetKeys.add(6, new int[]{0, Terrain.getN()});
+        successSetValues.add(6, 0);
 
-        successSet.put(new int[]{0, 0, 0, 10, 1}, 0);
-        successSet.put(new int[]{10, 0, 0, 0, 10}, 30);
-        successSet.put(new int[]{4, 2, 3, 2, 5, 0, 1, 3}, 10);
-        invalidValuesSet.put(new int[]{-4, 2, 3, 2, 5, 0, 1, 3}, -1);
-
-        invalidValuesSet.put(new int[Terrain.getN() + 1], -1);
-        invalidValuesSet.put(new int[]{Terrain.getN() + 1}, -1);
-        successSet.put(new int[]{0, Terrain.getN()}, 0);
-
+        //тесты с исключениями InvalidValuesException
+        invalidValuesSetKeys.add(0, new int[]{-4, 2, 3, 2, 5, 0, 1, 3});
+        invalidValuesSetValues.add(0, -1);
+        invalidValuesSetKeys.add(1, new int[Terrain.getN() + 1]);
+        invalidValuesSetValues.add(1, -1);
+        invalidValuesSetKeys.add(2, new int[]{Terrain.getN() + 1});
+        invalidValuesSetValues.add(2, -1);
     }
 
     @After
     public void tearDown() {
-        successSet.clear();
-        invalidValuesSet.clear();
+        successSetKeys.clear();
+        successSetValues.clear();
+        invalidValuesSetKeys.clear();
+        invalidValuesSetValues.clear();
     }
 
     @Test(expected = InvalidValuesException.class)
     public void TestGetWaterWithInvalidValuesException() throws InvalidValuesException {
-        for (Map.Entry<int[], Integer> entry : invalidValuesSet.entrySet()
-        ) {
-            final int[] test = entry.getKey();
-            final Integer expecteds = entry.getValue();
+        for (int i = 0; i < invalidValuesSetKeys.size(); i++) {
+            final int[] test = invalidValuesSetKeys.get(i);
+            final Integer expecteds = invalidValuesSetValues.get(i);
             final Integer actual = new Aquarium(test).getWater();
             assertEquals(expecteds, actual);
         }
     }
 
-
     @Test
     public void TestGetWater() throws InvalidValuesException {
-        for (Map.Entry<int[], Integer> entry : successSet.entrySet()
-        ) {
-            final int[] test = entry.getKey();
-            final Integer expecteds = entry.getValue();
+        for (int i = 0; i < successSetKeys.size(); i++) {
+            final int[] test = successSetKeys.get(i);
+            final Integer expecteds = successSetValues.get(i);
             final Integer actual = new Aquarium(test).getWater();
             assertEquals(expecteds, actual);
         }

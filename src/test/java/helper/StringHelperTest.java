@@ -39,7 +39,7 @@ public class StringHelperTest {
         invalidValuesSet.put("1, -3", new int[]{1, 3});
         invalidValuesSet.put("1-3", new int[]{1, 3});
 
-        //тесты с исключениями InvalidValuesException
+        //тесты с исключениями NumberFormatException
         String string = "1,2,3,";
         invalidFormatSet.put(string + "2147483648", new int[]{1, 2, 3});
         invalidFormatSet.put(string + "-2147483649", new int[]{1, 2, 3});
