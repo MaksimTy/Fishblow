@@ -15,7 +15,7 @@ public class AquariumTest {
     //успешные вырианты тестов
     private final ArrayList<int[]> successSetKeys = new ArrayList<>();
     private final ArrayList<Integer> successSetValues = new ArrayList<>();
-    //тесты с исключениями InvalidValuesException
+    //тесты с исключениями NumberFormatException
     private final ArrayList<int[]> invalidValuesSetKeys = new ArrayList<>();
     private final ArrayList<Integer> invalidValuesSetValues = new ArrayList<>();
 
@@ -38,7 +38,7 @@ public class AquariumTest {
         successSetKeys.add(6, new int[]{0, Terrain.getN()});
         successSetValues.add(6, 0);
 
-        //тесты с исключениями InvalidValuesException
+        //тесты с исключениями NumberFormatException
         invalidValuesSetKeys.add(0, new int[]{-4, 2, 3, 2, 5, 0, 1, 3});
         invalidValuesSetValues.add(0, -1);
         invalidValuesSetKeys.add(1, new int[Terrain.getN() + 1]);
@@ -55,8 +55,8 @@ public class AquariumTest {
         invalidValuesSetValues.clear();
     }
 
-    @Test(expected = InvalidValuesException.class)
-    public void TestGetWaterWithInvalidValuesException() throws InvalidValuesException {
+    @Test(expected = NumberFormatException.class)
+    public void TestGetWaterWithNumberFormatException() throws NumberFormatException {
         for (int i = 0; i < invalidValuesSetKeys.size(); i++) {
             final int[] test = invalidValuesSetKeys.get(i);
             final Integer expecteds = invalidValuesSetValues.get(i);
@@ -66,7 +66,7 @@ public class AquariumTest {
     }
 
     @Test
-    public void TestGetWater() throws InvalidValuesException {
+    public void TestGetWater() throws NumberFormatException {
         for (int i = 0; i < successSetKeys.size(); i++) {
             final int[] test = successSetKeys.get(i);
             final Integer expecteds = successSetValues.get(i);

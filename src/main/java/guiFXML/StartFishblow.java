@@ -1,4 +1,4 @@
-package gui;
+package guiFXML;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -11,18 +11,20 @@ import java.io.IOException;
 public class AppStart extends Application {
 
     private Controller controller;
-    
+
     public static void main(String[] args) {
         launch(args);
     }
 
     @Override
     public void start(Stage stage) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
+
+        Parent root = FXMLLoader.load(getClass().getResource("/aquarium.fxml"));
+
         Scene scene = new Scene(root);
 
         stage.setScene(scene);
-        stage.setTitle("Hello JavaFX");
+        stage.setTitle("Fishblow");
         stage.setWidth(250);
         stage.setHeight(200);
 

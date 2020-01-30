@@ -21,7 +21,7 @@ public class Aquarium {
     private List<Layer> layers;
 
 
-    public Aquarium(int[] terrain) throws InvalidValuesException {
+    public Aquarium(int[] terrain) throws NumberFormatException {
         this.terrain = new Terrain(terrain);
         if (this.terrain.getAquariumMatrix() != null) {
             this.layers = new ArrayList<>();

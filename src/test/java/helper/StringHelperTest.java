@@ -1,6 +1,5 @@
 package helper;
 
-import model.InvalidValuesException;
 import model.Terrain;
 import org.junit.After;
 import org.junit.Before;
@@ -16,8 +15,6 @@ public class StringHelperTest {
 
     private final Map<String, int[]> successSet = new HashMap<>();
     private final Map<String, int[]> invalidValuesSet = new HashMap<>();
-    private final Map<String, int[]> invalidFormatSet = new HashMap<>();
-
 
     @Before
     public void setUp() {
@@ -28,7 +25,7 @@ public class StringHelperTest {
         Arrays.fill(array1, Terrain.getN());
         successSet.put(Arrays.toString(array1), array1);
 
-        //тесты с исключениями InvalidValuesException
+        //тесты с исключениями NumberFormatException
         //1. Превышение размера массива
         int[] array2 = new int[Terrain.getN() + 1];
         Arrays.fill(array2, Terrain.getN());
@@ -41,32 +38,19 @@ public class StringHelperTest {
 
         //тесты с исключениями NumberFormatException
         String string = "1,2,3,";
-        invalidFormatSet.put(string + "2147483648", new int[]{1, 2, 3});
-        invalidFormatSet.put(string + "-2147483649", new int[]{1, 2, 3});
+        invalidValuesSet.put(string + "2147483648", new int[]{1, 2, 3});
+        invalidValuesSet.put(string + "-2147483649", new int[]{1, 2, 3});
     }
 
     @After
     public void tearDown() {
         successSet.clear();
         invalidValuesSet.clear();
-        invalidFormatSet.clear();
-    }
-
-    @Test(expected = InvalidValuesException.class)
-    public void TestSetArrayWithInvalidValuesException() throws InvalidValuesException {
-        for (Map.Entry<String, int[]> instance : this.invalidValuesSet.entrySet()
-        ) {
-            StringHelper sh = new StringHelper();
-            sh.setArray(instance.getKey());
-            final int[] expecteds = instance.getValue();
-            final int[] actual = sh.getArray();
-            assertArrayEquals(expecteds, actual);
-        }
     }
 
     @Test(expected = NumberFormatException.class)
-    public void TestSetArrayWithNumberFormatException() throws InvalidValuesException {
-        for (Map.Entry<String, int[]> instance : this.invalidFormatSet.entrySet()
+    public void TestSetArrayWithNumberFormatException() throws NumberFormatException {
+        for (Map.Entry<String, int[]> instance : this.invalidValuesSet.entrySet()
         ) {
             StringHelper sh = new StringHelper();
             sh.setArray(instance.getKey());
@@ -78,7 +62,7 @@ public class StringHelperTest {
 
 
     @Test
-    public void TestSetArray() throws InvalidValuesException {
+    public void TestSetArray() throws NumberFormatException {
         for (Map.Entry<String, int[]> instance : this.successSet.entrySet()
         ) {
             StringHelper sh = new StringHelper();

@@ -1,6 +1,6 @@
 package helper;
 
-import model.InvalidValuesException;
+
 import model.Terrain;
 
 import java.util.ArrayList;
@@ -20,9 +20,9 @@ public class StringHelper {
      * возвращиются как два натуральных числа.
      *
      * @param string
-     * @throws InvalidValuesException, NumberFormatException
+     * @throws  NumberFormatException
      */
-    public void setArray(String string) throws InvalidValuesException, NumberFormatException {
+    public void setArray(String string) throws  NumberFormatException {
 
         Matcher matcher = this.pattern.matcher(string);
 
@@ -33,7 +33,7 @@ public class StringHelper {
             this.integerList.add(i);
 
             if (i > Terrain.getN() || i < 0 || this.integerList.size() > Terrain.getN()) {
-                throw new InvalidValuesException("Invalid input data!");
+                throw new NumberFormatException("Invalid input data!");
             }
         }
     }

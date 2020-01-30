@@ -38,7 +38,7 @@ public class Terrain {
      */
     private int[][] aquariumMatrix;
 
-    public Terrain(int[] terrain) throws InvalidValuesException {
+    public Terrain(int[] terrain) throws NumberFormatException {
         this.terrain = terrain;
         int maxItem = Arrays.stream(this.terrain).max().getAsInt();
 
@@ -50,7 +50,7 @@ public class Terrain {
             this.aquariumMatrix = this.getMatrix();
         } else {
             this.aquariumMatrix = null;
-            throw new InvalidValuesException("Invalid input data!");
+            throw new NumberFormatException("Invalid input data!");
         }
     }
 

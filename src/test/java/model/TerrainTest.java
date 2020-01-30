@@ -18,7 +18,7 @@ public class TerrainTest {
     //успешные вырианты тестов
     private final ArrayList<int[]> successSetKeys = new ArrayList<>();
     private final ArrayList<int[][]> successSetValues = new ArrayList<>();
-    //тесты с исключениями InvalidValuesException
+    //тесты с исключениями NumberFormatException
     private final ArrayList<int[]> invalidValuesSetKeys = new ArrayList<>();
     private final ArrayList<int[][]> invalidValuesSetValues = new ArrayList<>();
 
@@ -43,7 +43,7 @@ public class TerrainTest {
         successSetKeys.add(2, arraySK2);
         successSetValues.add(2, arraySV2);
 
-        //тесты с исключениями InvalidValuesException
+        //тесты с исключениями NumberFormatException
         int[] arrayIK0 = new int[Terrain.getN() + 1];
         Arrays.fill(arrayIK0, e);
         invalidValuesSetKeys.add(0, arrayIK0);
@@ -69,8 +69,8 @@ public class TerrainTest {
         invalidValuesSetValues.clear();
     }
 
-    @Test(expected = InvalidValuesException.class)
-    public void TestGetAquriumMatrixWithInvalidValuesException() throws InvalidValuesException {
+    @Test(expected = NumberFormatException.class)
+    public void TestGetAquriumMatrixWithNumberFormatException() throws NumberFormatException {
         for (int i = 0; i < invalidValuesSetKeys.size(); i++) {
             final int[] test = invalidValuesSetKeys.get(i);
             final int[][] expecteds = invalidValuesSetValues.get(i);
@@ -81,7 +81,7 @@ public class TerrainTest {
     }
 
     @Test
-    public void TestGetAquriumMatrix() throws InvalidValuesException {
+    public void TestGetAquriumMatrix() throws NumberFormatException {
         for (int i = 0; i < successSetKeys.size(); i++) {
             final int[] test = successSetKeys.get(i);
             final int[][] expecteds = successSetValues.get(i);
