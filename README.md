@@ -16,6 +16,7 @@
 как вся вода слилась.
 Например, для массива [4,2,3,2,5,0,1,3] результат должен быть равен 10, как на
 картинке ниже.
+
 ![fishblow](https://github.com/MaksimTy/Fishblow/blob/master/src/main/resources/icons/fishblow.png)
 
 Объем кубика считать равным 1.
