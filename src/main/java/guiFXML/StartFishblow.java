@@ -8,9 +8,8 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class AppStart extends Application {
+public class StartFishblow extends Application {
 
-    private Controller controller;
 
     public static void main(String[] args) {
         launch(args);
@@ -19,15 +18,14 @@ public class AppStart extends Application {
     @Override
     public void start(Stage stage) throws IOException {
 
-        Parent root = FXMLLoader.load(getClass().getResource("/aquarium.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Fishblow.fxml"));
+        Parent root = loader.load();
 
         Scene scene = new Scene(root);
-
         stage.setScene(scene);
         stage.setTitle("Fishblow");
-        stage.setWidth(250);
-        stage.setHeight(200);
-
+        stage.setWidth(600);stage.setMinWidth(600);
+        stage.setHeight(400);stage.setMinHeight(400);
         stage.show();
     }
 }

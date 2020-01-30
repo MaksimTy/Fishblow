@@ -22,7 +22,7 @@ public class StringHelper {
      * @param string
      * @throws  NumberFormatException
      */
-    public void setArray(String string) throws  NumberFormatException {
+    public void setArray(String string) throws NumberFormatException {
 
         Matcher matcher = this.pattern.matcher(string);
 
