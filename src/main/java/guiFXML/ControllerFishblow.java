@@ -30,7 +30,6 @@ public class ControllerFishblow {
     private final String title = "Последовательная высота столбцов в аквариуме: \n";
     private final String cols = "\nКоличество столбцов = ";
     private final String rows = "\nВысота аквариума = ";
-
     private final String intro = "" +
             "1. Выберите файл с данными (\"open file\");\n" +
             "2. Проверьте файл (\"check file\");\n" +
@@ -49,7 +48,6 @@ public class ControllerFishblow {
     private Button buttonCalc;   //"calculate"
     @FXML
     private Button buttonShow;   //"show"
-
     @FXML
     private TextArea text; // input area
     @FXML

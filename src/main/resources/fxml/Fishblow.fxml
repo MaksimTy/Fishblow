@@ -1,55 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-
 <?import javafx.geometry.*?>
-<?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.canvas.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="400.0" minWidth="600.0"
-            prefHeight="400.0"
-            prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="guiFXML.ControllerFishblow">
+
+<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="400.0" minWidth="600.0" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="guiFXML.ControllerFishblow">
     <children>
         <VBox layoutX="14.0" layoutY="14.0" spacing="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="20.0">
             <children>
-                <Button fx:id="buttonInput" mnemonicParsing="false" onAction="#setButtonInputClick" prefHeight="22.0"
-                        prefWidth="78.0" text="open file"/>
-                <Button fx:id="buttonCheck" mnemonicParsing="false" onAction="#setButtonCheckClick" prefHeight="22.0"
-                        prefWidth="78.0" text="check data"/>
-                <Button fx:id="buttonCalc" mnemonicParsing="false" onAction="#setButtonCalcClick" prefHeight="22.0"
-                        prefWidth="78.0" text="calculate"/>
-                <Button fx:id="buttonShow" mnemonicParsing="false" onAction="#setButtonShowClick" prefHeight="22.0"
-                        prefWidth="78.0" text="show"/>
+                <Button fx:id="buttonInput" mnemonicParsing="false" onAction="#setButtonInputClick" prefHeight="22.0" prefWidth="78.0" text="open file" />
+                <Button fx:id="buttonCheck" mnemonicParsing="false" onAction="#setButtonCheckClick" prefHeight="22.0" prefWidth="78.0" text="check data" />
+                <Button fx:id="buttonCalc" mnemonicParsing="false" onAction="#setButtonCalcClick" prefHeight="22.0" prefWidth="78.0" text="calculate" />
+                <Button fx:id="buttonShow" mnemonicParsing="false" onAction="#setButtonShowClick" prefHeight="22.0" prefWidth="78.0" text="show" />
             </children>
             <padding>
-                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
             </padding>
             <opaqueInsets>
-                <Insets/>
+                <Insets />
             </opaqueInsets>
         </VBox>
-        <VBox layoutX="136.0" layoutY="185.0" spacing="5.0" AnchorPane.leftAnchor="93.0" AnchorPane.rightAnchor="5.0"
-              AnchorPane.topAnchor="20.0">
+        <VBox layoutX="136.0" layoutY="185.0" spacing="5.0" AnchorPane.leftAnchor="93.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="20.0">
             <children>
-                <TextArea fx:id="text" prefHeight="117.0" prefWidth="488.0"/>
+                <TextArea fx:id="text" prefHeight="117.0" prefWidth="488.0" text="1. Выберите файл с данными (&quot;open file&quot;);&#10;2. Проверьте файл (&quot;check file&quot;);&#10;3. Получите результат (&quot;calculate&quot;); " />
                 <Label fx:id="label" text="">
                     <padding>
-                        <Insets bottom="0.0" left="2.0" right="2.0" top="0.0"/>
+                        <Insets bottom="0.0" left="2.0" right="2.0" top="0.0" />
                     </padding>
                 </Label>
             </children>
             <padding>
-                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
             </padding>
         </VBox>
-        <ScrollPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0"
-                    AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="205.0">
+        <ScrollPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="205.0">
             <content>
-                <Canvas fx:id="canvas" height="200.0" width="200.0"/>
+                <Canvas fx:id="canvas" height="200.0" width="200.0" />
             </content>
         </ScrollPane>
     </children>
     <padding>
-        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0"/>
+        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
     </padding>
 </AnchorPane>
