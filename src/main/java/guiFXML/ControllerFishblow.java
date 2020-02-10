@@ -24,7 +24,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class ControllerFishblow {
-
+    //Comment: у методов нет описания, что происходит. Не так страшно, пожалуй - вроде, тут все к графике, в основном относится и рисованию.
 
     private final String answer = "Объем воды, оставшейся между кубиками: ";
     private final String title = "Последовательная высота столбцов в аквариуме: \n";
@@ -56,7 +56,8 @@ public class ControllerFishblow {
     private Canvas canvas;
     private GraphicsContext graphicsContext;
 
-
+    //Comment: Названия методов не очень отражают их суть. Тут, например, кнопка открытия файла. Кажется, понятней будет
+    //openFile? Слово-префикс set, полагаю, тут не нужно. Это ведь действие по нажатию кнопки: openButtonClick, InputButtonClick, openFile
     @FXML
     public void setButtonInputClick(ActionEvent event) {
         this.clearOutput();
@@ -72,7 +73,8 @@ public class ControllerFishblow {
             e.printStackTrace();
             this.setOutputText(e.getMessage());
         }
-        this.setOutputText(lines.stream().collect(Collectors.joining(" ")));
+        //Comment: idea ругается - если файл не прочтется - будет null на следующей строчке
+        this.setOutputText(String.join(" ", lines));    //Comment: idea предложила, так покороче будет.
 
     }
 
@@ -88,8 +90,10 @@ public class ControllerFishblow {
 
         } catch (NullPointerException |
                 OutOfMemoryError |
-                NumberFormatException e) {
-            e.printStackTrace();
+                NumberFormatException e) {  //А если еще чего-нибудь выскочит? Лови уж Throwable или Exception просто
+            e.printStackTrace();    //Comment: А куда он распечатает это, консоли ведь пользователь не видит?
+            // Может, тогда навернуть какой-нибудь log4j2 или logback и в файл?
+            //Вообще, логгеры нынче маст хэв.
             array = Arrays.toString(stringHelper.getArray());
             setOutputText((array + "\n" + e.getMessage()));
         }

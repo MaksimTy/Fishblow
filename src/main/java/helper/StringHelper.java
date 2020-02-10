@@ -13,6 +13,7 @@ public class StringHelper {
     private static Pattern pattern = Pattern.compile("(-?\\d+)+");
     private List<Integer> integerList = new ArrayList<>();
 
+    //Comment: пропущены описание параметров и результата
     /**
      * Метод формирует список натуральных числе из строки.
      * Разделителем являются любые символы, кроме чисел и знака минус.
@@ -24,22 +25,24 @@ public class StringHelper {
      */
     public void setArray(String string) throws NumberFormatException {
 
-        Matcher matcher = this.pattern.matcher(string);
+        Matcher matcher = pattern.matcher(string);  //поле статическое, this не нужен
 
-        while (matcher.find() && this.integerList.size() < Terrain.getN() + 1) {
+        while (matcher.find() && this.integerList.size() < Terrain.getSizeLimit() + 1) {
             String s = matcher.group();
 
             int i = Integer.parseInt(s);
             this.integerList.add(i);
 
-            if (i > Terrain.getN() || i < 0 || this.integerList.size() > Terrain.getN()) {
+            if (i > Terrain.getSizeLimit() || i < 0 || this.integerList.size() > Terrain.getSizeLimit()) {
                 throw new NumberFormatException("Invalid input data!");
             }
         }
     }
 
     public int[] getArray() {
-        return this.integerList.stream().mapToInt(x -> x).toArray();
+        return this.integerList.stream()
+                                .mapToInt(x -> x)
+                                .toArray();
     }
 }
 

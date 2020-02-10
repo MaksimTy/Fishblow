@@ -17,19 +17,23 @@ public class Terrain {
     /**
      * предельная ширина или высота аквариума
      */
-    private final static int N = 100_000;
+    private final static int SIZE_LIMIT = 100_000;  //comment: избегай однобуквенных наименований
+
     /**
-     * terrain последовательная высота столбцов в аквариуме.
+     * последовательная высота столбцов в аквариуме.
      */
     private int[] terrain;
+
     /**
      * высота аквариума
      */
     private final int height;
+
     /**
      * ширина аквариума
      */
     private final int width;
+
     /**
      * aquariumMatrix матрица столбцов  в аквариуме .
      * высота матрицы height - максимум массива terrain
@@ -40,17 +44,21 @@ public class Terrain {
 
     public Terrain(int[] terrain) throws NumberFormatException {
         this.terrain = terrain;
-        int maxItem = Arrays.stream(this.terrain).max().getAsInt();
+        int maxItem = Arrays.stream(this.terrain)
+                            .max()
+                            .getAsInt();    //comment: Idea ругается, разобраться.
 
         this.height = maxItem <= 0 ? 1 : maxItem;
         this.width = this.terrain.length;
 
         if (isTerrainValid()) {
-
             this.aquariumMatrix = this.getMatrix();
         } else {
             this.aquariumMatrix = null;
-            throw new NumberFormatException("Invalid input data!");
+
+            throw new NumberFormatException("Invalid input data!"); //comment: Есть родной IllegalArgumentException,
+            // не обязательно ради 1 исключения класс тут создавать, мне кажется
+
         }
     }
 
@@ -64,9 +72,9 @@ public class Terrain {
      * false - если не соотвтетствуют.
      */
     private boolean isTerrainValid() {
-        return this.width <= N
-                && this.height <= N
-                && Arrays.stream(this.terrain).min().getAsInt() >= 0;
+        return this.width <= SIZE_LIMIT
+                && this.height <= SIZE_LIMIT
+                && Arrays.stream(this.terrain).min().getAsInt() >= 0;   //Comment: idea warning ругается, разобраться.
     }
 
 
@@ -82,8 +90,8 @@ public class Terrain {
         return aquariumMatrix;
     }
 
-    public static int getN() {
-        return N;
+    public static int getSizeLimit() {
+        return SIZE_LIMIT;
     }
 
     @Override
@@ -96,7 +104,7 @@ public class Terrain {
         return stringBuilder.toString();
     }
 
-
+    //comment: Пропущено возвращаемое значение в описании
     /**
      * Метод из исходного массива формирует матрицу аквариума.
      *
@@ -108,22 +116,22 @@ public class Terrain {
         int[][] matrix = new int[this.height][this.width];
         int counter = matrix.length;
         for (int i = counter - 1; i >= 0; i--) {
-            unit = divArray(unit);
-            for (int j = 0; j < matrix[i].length; j++) {
-                matrix[i][j] = unit[j];
-            }
+            unit = divArray(unit);  //Idea пишет, что переменной уже назначено это значение
+            System.arraycopy(unit, 0, matrix[i], 0, matrix[i].length);  //Comment: Idea предлагает так. Вроде, будет быстрее
         }
         return matrix;
     }
 
+    //Comment: Пропущены параметры и возвращаемое значение
     /**
-     * Метод вычитает из заданного массива натуральных чисел
+     * Метод вычитает из заданного массива натуральных чисел    //Comment: не совсем однозначное описание. что значит вычесть массив из массива?
      * единичный массив той же длины.
      *
      * @param line
      * @return
      */
     private int[] divArray(int[] line) {
+        //Comment: Опиши алгоритм, если считаешь, что чтобы его понять стороннему человеку нужно больше времени без описания, чем с ним
         for (int i = 0; i < this.terrain.length; i++) {
             if (this.terrain[i] == 0) {
                 line[i] = 0;
