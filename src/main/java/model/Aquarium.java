@@ -3,8 +3,9 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
+//comment: не критично, но постоянное мелькание в описаниях "класс делает, метод делает..." и т.д., мне кажется, можно не указывать.
+//достаточно сразу описывать суть.
 /**
- * Класс описывает объект "аквариум".
  * АКвариум представляет собой упорядоченный список
  * слоёв из состояний клеток, заданных матрицей
  * из класса Terrain.
@@ -15,6 +16,7 @@ public class Aquarium {
      * Объект описывающий конфигурацию кубиков в аквариуме.
      */
     private Terrain terrain;
+
     /**
      * Список слоёв аквариума.
      */
@@ -30,7 +32,7 @@ public class Aquarium {
     }
 
     /**
-     * Метод заполняет аквариум плитками Tile.
+     * Заполняет аквариум плитками Tile.
      */
     private void fillAquarium() {
         for (int i = 0; i < this.terrain.getHeight(); i++
@@ -40,8 +42,7 @@ public class Aquarium {
     }
 
     /**
-     * Метод возвращает количество воды в аквариуме.
-     *
+     * Вычисляет количество воды в аквариуме.
      * @return количество воды в аквариуме.
      * Если список слоёв пуст, то возвращается -1.
      */
@@ -49,7 +50,10 @@ public class Aquarium {
         if (this.layers == null) {
             return -1;
         }
-        return this.layers.stream().map(x -> x.getWater()).reduce((a, b) -> a + b).get();
+        return this.layers.stream()
+                .map(Layer::getWater)
+                .reduce(Integer::sum)
+                .get(); //Comment: Idea пишет ворнинг - проверить
     }
 
 //comment: я иногда отделяю геттеры и сеттеры длинной чертой, чтобы, если методов дофига - не рябило в глазах

@@ -35,15 +35,15 @@ public class AquariumTest {
         successSetValues.add(4, 30);
         successSetKeys.add(5, new int[]{4, 2, 3, 2, 5, 0, 1, 3});
         successSetValues.add(5, 10);
-        successSetKeys.add(6, new int[]{0, Terrain.getN()});
+        successSetKeys.add(6, new int[]{0, Terrain.getSizeLimit()});
         successSetValues.add(6, 0);
 
         //тесты с исключениями NumberFormatException
         invalidValuesSetKeys.add(0, new int[]{-4, 2, 3, 2, 5, 0, 1, 3});
         invalidValuesSetValues.add(0, -1);
-        invalidValuesSetKeys.add(1, new int[Terrain.getN() + 1]);
+        invalidValuesSetKeys.add(1, new int[Terrain.getSizeLimit() + 1]);
         invalidValuesSetValues.add(1, -1);
-        invalidValuesSetKeys.add(2, new int[]{Terrain.getN() + 1});
+        invalidValuesSetKeys.add(2, new int[]{Terrain.getSizeLimit() + 1});
         invalidValuesSetValues.add(2, -1);
     }
 

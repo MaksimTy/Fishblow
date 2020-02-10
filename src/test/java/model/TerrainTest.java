@@ -36,7 +36,7 @@ public class TerrainTest {
                 {e, e, b, b},
                 {e, b, b, b}});
 
-        int[] arraySK2 = new int[Terrain.getN()];
+        int[] arraySK2 = new int[Terrain.getSizeLimit()];
         Arrays.fill(arraySK2, e);
         int[][] arraySV2 = new int[1][arraySK2.length];
         Arrays.fill(arraySV2[0], e);
@@ -44,12 +44,12 @@ public class TerrainTest {
         successSetValues.add(2, arraySV2);
 
         //тесты с исключениями NumberFormatException
-        int[] arrayIK0 = new int[Terrain.getN() + 1];
+        int[] arrayIK0 = new int[Terrain.getSizeLimit() + 1];
         Arrays.fill(arrayIK0, e);
         invalidValuesSetKeys.add(0, arrayIK0);
         invalidValuesSetValues.add(0, null);
 
-        int[] arrayIK1 = new int[Terrain.getN() + 1];
+        int[] arrayIK1 = new int[Terrain.getSizeLimit() + 1];
         Arrays.fill(arrayIK1, b);
         invalidValuesSetKeys.add(1, arrayIK1);
         invalidValuesSetValues.add(1, null);
@@ -57,7 +57,7 @@ public class TerrainTest {
         invalidValuesSetKeys.add(2, new int[]{-7, 0, 1, 5});
         invalidValuesSetValues.add(2, null);
 
-        invalidValuesSetKeys.add(3, new int[]{0, 0, 0, Terrain.getN() + 1});
+        invalidValuesSetKeys.add(3, new int[]{0, 0, 0, Terrain.getSizeLimit() + 1});
         invalidValuesSetValues.add(3, null);
     }
 

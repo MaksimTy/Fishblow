@@ -21,14 +21,14 @@ public class StringHelperTest {
         //успешные вырианты тестов
         successSet.put("1,2 3.4 - 5a6и7/8   9_10 100000",
                 new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 100000});
-        int[] array1 = new int[Terrain.getN()];
-        Arrays.fill(array1, Terrain.getN());
+        int[] array1 = new int[Terrain.getSizeLimit()];
+        Arrays.fill(array1, Terrain.getSizeLimit());
         successSet.put(Arrays.toString(array1), array1);
 
         //тесты с исключениями NumberFormatException
         //1. Превышение размера массива
-        int[] array2 = new int[Terrain.getN() + 1];
-        Arrays.fill(array2, Terrain.getN());
+        int[] array2 = new int[Terrain.getSizeLimit() + 1];
+        Arrays.fill(array2, Terrain.getSizeLimit());
         invalidValuesSet.put(Arrays.toString(array2), array2);
         //2. Превышение допустимого значения элемента массива
         invalidValuesSet.put("1, 100000", new int[]{1});
