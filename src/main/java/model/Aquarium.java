@@ -52,6 +52,9 @@ public class Aquarium {
         return this.layers.stream().map(x -> x.getWater()).reduce((a, b) -> a + b).get();
     }
 
+//comment: я иногда отделяю геттеры и сеттеры длинной чертой, чтобы, если методов дофига - не рябило в глазах
+//GET and SET=================================================
+
     public int getWidth() {
         return this.terrain.getWidth();
     }
